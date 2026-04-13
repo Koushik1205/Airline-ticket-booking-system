@@ -1,0 +1,63 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Flight Segment',
+    typeNamePlural: 'Flight Segments',
+    title: { type: #STANDARD, label: 'Item Number', value: 'ItemNumber' }
+  }
+}
+annotate entity ZCIT_CBKITM_AM022 with
+{
+  @UI.facet: [
+    { id: 'BookingItemDetails', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE,
+      label: 'Flight Segment Details', position: 10 }
+  ]
+ 
+  @UI: { lineItem: [{position: 10, label: 'Booking ID'}],
+         identification: [{position: 10, label: 'Booking ID'}] }
+  BookingId;
+ 
+  @EndUserText.label: 'Item Number'
+  @UI: { lineItem: [{position: 20, label: 'Item No.'}],
+         identification: [{position: 20, label: 'Item Number'}] }
+  ItemNumber;
+ 
+  @UI: { lineItem: [{position: 30, label: 'Flight No.'}],
+         identification: [{position: 30, label: 'Flight Number'}] }
+  FlightNumber;
+ 
+  @UI: { lineItem: [{position: 40, label: 'Dep. Time'}],
+         identification: [{position: 40, label: 'Departure Time'}] }
+  DepartureTime;
+ 
+  @UI: { lineItem: [{position: 50, label: 'Arr. Time'}],
+         identification: [{position: 50, label: 'Arrival Time'}] }
+  ArrivalTime;
+ 
+  @UI: { lineItem: [{position: 60, label: 'Seat Class'}],
+         identification: [{position: 60, label: 'Seat Class'}] }
+  SeatClass;
+ 
+  @UI: { lineItem: [{position: 70, label: 'Seat No.'}],
+         identification: [{position: 70, label: 'Seat Number'}] }
+  SeatNumber;
+ 
+  @UI: { lineItem: [{position: 80, label: 'Baggage (KG)'}],
+         identification: [{position: 80, label: 'Baggage Allowance (KG)'}] }
+  BaggageAllowance;
+ 
+  @UI: { lineItem: [{position: 90, label: 'Fare Amount'}],
+         identification: [{position: 90, label: 'Fare Amount'}] }
+  FareAmount;
+ 
+  @UI.hidden: true
+  Currency;
+  @UI.hidden: true
+  LocalCreatedBy;
+  @UI.hidden: true
+  LocalCreatedAt;
+  @UI.hidden: true
+  LocalLastChangedBy;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

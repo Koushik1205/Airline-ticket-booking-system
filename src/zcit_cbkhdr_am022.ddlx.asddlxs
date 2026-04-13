@@ -1,0 +1,73 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Airline Booking',
+    typeNamePlural: 'Airline Bookings',
+    title: { type: #STANDARD, label: 'Booking ID', value: 'BookingId' }
+  }
+}
+annotate entity ZCIT_CBKHDR_AM022 with
+{
+  @UI.facet: [
+    { id: 'BookingHeader', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE,
+      label: 'Booking Details', position: 10 },
+    { id: 'BookingItems', purpose: #STANDARD, type: #LINEITEM_REFERENCE,
+      label: 'Flight Segments', position: 20, targetElement: '_bookingitem' }
+  ]
+ 
+  @UI: { lineItem: [{position: 10, label: 'Booking ID'}],
+         identification: [{position: 10, label: 'Booking ID'}],
+         selectionField: [{position: 10}] }
+  BookingId;
+ 
+  @UI: { lineItem: [{position: 20, label: 'Passenger Name'}],
+         identification: [{position: 20, label: 'Passenger Name'}],
+         selectionField: [{position: 20}] }
+  PassengerName;
+ 
+  @UI: { lineItem: [{position: 30, label: 'Email'}],
+         identification: [{position: 30, label: 'Email'}] }
+  PassengerEmail;
+ 
+  @UI: { lineItem: [{position: 40, label: 'Flight Date'}],
+         identification: [{position: 40, label: 'Flight Date'}],
+         selectionField: [{position: 40}] }
+  FlightDate;
+ 
+  @UI: { lineItem: [{position: 50, label: 'From (IATA)'}],
+         identification: [{position: 50, label: 'Departure Airport'}],
+         selectionField: [{position: 50}] }
+  DepartureCode;
+ 
+  @UI: { lineItem: [{position: 60, label: 'To (IATA)'}],
+         identification: [{position: 60, label: 'Arrival Airport'}],
+         selectionField: [{position: 60}] }
+  ArrivalCode;
+ 
+  @UI: { lineItem: [{position: 70, label: 'Airline Code'}],
+         identification: [{position: 70, label: 'Airline Code'}] }
+  AirlineCode;
+ 
+  @UI: { lineItem: [{position: 80, label: 'Airline Name'}],
+         identification: [{position: 80, label: 'Airline Name'}] }
+  AirlineName;
+ 
+  @UI: { lineItem: [{position: 90, label: 'Status'}],
+         identification: [{position: 90, label: 'Booking Status'}],
+         selectionField: [{position: 90}] }
+  BookingStatus;
+ 
+  @UI: { lineItem: [{position: 100, label: 'Total Fare'}],
+         identification: [{position: 100, label: 'Total Fare'}] }
+  TotalFare;
+ 
+  @UI: { lineItem: [{position: 110, label: 'Currency'}],
+         identification: [{position: 110, label: 'Currency'}] }
+  Currency;
+ 
+  @UI: { identification: [{position: 120, label: 'Created By'}] }
+  LocalCreatedBy;
+ 
+  @UI: { identification: [{position: 130, label: 'Created At'}] }
+  LocalCreatedAt;
+}

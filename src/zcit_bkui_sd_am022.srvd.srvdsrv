@@ -1,0 +1,5 @@
+@EndUserText.label: 'Airline Booking Service Definition'
+define service ZCIT_BKUI_SD_AM022 {
+  expose ZCIT_CBKHDR_AM022;
+  expose ZCIT_CBKITM_AM022;
+}

@@ -1,0 +1,80 @@
+unmanaged implementation in class ZBP_IBKHDR_AM022 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCIT_IBKHDR_AM022 alias AirlineBookingHdr
+  implementation in class ZBP_HNDLHDR_AM022 unique
+  draft table zcit_hdr_d_am022
+  lock master total etag LocalLastChangedAt
+  authorization master ( instance )
+  etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) BookingId;
+  field ( readonly : update ) BookingId;
+  field ( readonly ) LocalLastChangedAt;
+
+  association _bookingitem { create; with draft; }
+
+  mapping for zcit_bkhdr_am022
+  {
+    BookingId          = bookingid;
+    PassengerName      = passengername;
+    PassengerEmail     = passengeremail;
+    FlightDate         = flightdate;
+    DepartureCode      = departurecode;
+    ArrivalCode        = arrivalcode;
+    AirlineCode        = airlinecode;
+    AirlineName        = airlinename;
+    BookingStatus      = bookingstatus;
+    TotalFare          = totalfare;
+    Currency           = currency;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZCIT_IBKITM_AM022 alias AirlineBookingItm
+  implementation in class ZBP_HNDLITM_AM022 unique
+  draft table zcit_itm_d_am022
+  lock dependent by _bookingHeader
+  authorization dependent by _bookingHeader
+  etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly : update, mandatory : create ) ItemNumber;
+  field ( readonly ) BookingId;
+
+  association _bookingHeader { with draft; }
+
+  mapping for zcit_bkitm_am022
+  {
+    BookingId          = bookingid;
+    ItemNumber         = itemnumber;
+    FlightNumber       = flightnumber;
+    DepartureTime      = departuretime;
+    ArrivalTime        = arrivaltime;
+    SeatClass          = seatclass;
+    SeatNumber         = seatnumber;
+    BaggageAllowance   = baggageallowance;
+    FareAmount         = fareamount;
+    Currency           = currency;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
